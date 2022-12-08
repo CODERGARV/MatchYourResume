@@ -1,0 +1,36 @@
+<div class="resumelist">
+    <div class="r1">
+      <div class="rhead">IIT Resume</div>
+      <div class="rlist">
+        <% for(var i=0; i <  iitResume.length ; i++) {%>
+          <tr>
+            <td>
+              <div class="ritem">
+                Resume <%= i+1 %>
+              <% if(user.likedResume.length ==0 ) {%>
+                <span id = heart><i class="fa fa-heart-o" aria-hidden="true" ></i> </span>
+                  <button onclick="actOnPost(event);" class="btnlike" data-post-id="<%= iitResume[i].id %>">Like</button>
+                  <% } %>
+              <% for(var j=0; j <  user.likedResume.length ; j++) {%>
+                  <% if(user.likedResume[j]==iitResume[i].resume) {%>
+                    <p>Click on the heart to love or un-love this post.</p>
+                    <span id = heart><i class="fa fa-heart-o" aria-hidden="true" ></i> </span>
+              <button onclick="actOnPost(event);" class="btnlike" data-post-id="<%= iitResume[i].id %>">Unike</button>
+              <% break; %>
+              <% }else if(j==user.likedResume.length-1){ %>
+                <span id = heart><i class="fa fa-heart-o" aria-hidden="true" ></i> </span>
+                  <button onclick="actOnPost(event);" class="btnlike" data-post-id="<%= iitResume[i].id %>">Like</button>
+                  <% } %>
+                  <% } %>
+              <span id="likes-count-<%= iitResume[i].id %>"><%= iitResume[i].likeCount %> </span>
+              <a href="<%= iitResume[i].resume %>" target="_blank" class="rlink"> Click Here</a>
+            </div>
+            </td>
+          </tr>
+       <% } %>
+      </div>
+    </div>
+    <div class="r2">2</div>
+    <div class="r3">3</div>
+    <div class="r4">4</div>
+  </div>

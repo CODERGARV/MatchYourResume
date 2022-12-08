@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index page</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- bootstarp-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="navbar">
+      <div id="nav1">Welcome to GetYourResume</div>
+      <div id="nav2"><%=user.name %><a href="/logout" class="navlink"> / logout</a></div>
+    </div>
+    <h1>Upload Your Resume Here : </h1>
+    <form action="/upload" method="POST">
+        <div class="form-group">
+            <label for="myfile">Upload Your Resume Link </label><br>
+            <input type="text" id="resume" name="resume"><br>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <h1>IIT Resume List</h1>
+      <% for(var i=0; i <  iitResume.length ; i++) {%>
+        <tr>
+          <td>
+            <a href="<%= iitResume[i].resume %>" target="_blank">Resume <%= i+1 %></a>
+            <% if(user.likedResume.length ==0 ) {%>
+                <button onclick="actOnPost(event);" data-post-id="<%= iitResume[i].id %>">Like</button>
+                <% } %>
+            <% for(var j=0; j <  user.likedResume.length ; j++) {%>
+                <% if(user.likedResume[j]==iitResume[i].resume) {%>
+            <button onclick="actOnPost(event);" data-post-id="<%= iitResume[i].id %>">Unlike</button>
+            <% break; %>
+            <% }else if(j==user.likedResume.length-1){ %>
+                <button onclick="actOnPost(event);" data-post-id="<%= iitResume[i].id %>">Like</button>
+                <% } %>
+            <% } %>
+            <span id="likes-count-<%= iitResume[i].id %>"><%= iitResume[i].likeCount %> </span>
+          </td>
+        </tr>
+     <% } %>
+     <h1>IIIT Resume List</h1>
+      <% for(var i=0; i <  iiitResume.length ; i++) {%>
+        <tr>
+          <td>
+            <a href="<%= iiitResume[i].resume %>" target="_blank">Resume <%= i+1 %></a>
+            <% if(user.likedResume.length ==0 ) {%>
+                <button onclick="actOnPost(event);" data-post-id="<%= iiitResume[i].id %>">Like</button>
+                <% } %>
+            <% for(var j=0; j <  user.likedResume.length ; j++) {%>
+                <% if(user.likedResume[j]==iiitResume[i].resume) {%>
+            <button onclick="actOnPost(event);" data-post-id="<%= iiitResume[i].id %>">Unlike</button>
+            <% break; %>
+            <% }else if(j==user.likedResume.length-1){ %>
+                <button onclick="actOnPost(event);" data-post-id="<%= iiitResume[i].id %>">Like</button>
+                <% } %>
+                <% } %>
+            <span id="likes-count-<%= iiitResume[i].id %>"><%= iiitResume[i].likeCount %> </span>
+          </td>
+        </tr>
+     <% } %>
+     <h1>NIT Resume List</h1>
+      <% for(var i=0; i <  nitResume.length ; i++) {%>
+        <tr>
+          <td>
+            <a href="<%= nitResume[i].resume %>" target="_blank">Resume <%= i+1 %></a>
+            <% if(user.likedResume.length ==0 ) {%>
+                <button onclick="actOnPost(event);" data-post-id="<%= nitResume[i].id %>">Like</button>
+                <% } %>
+            <% for(var j=0; j <  user.likedResume.length ; j++) {%>
+                <% if(user.likedResume[j]==nitResume[i].resume) {%>
+            <button onclick="actOnPost(event);" data-post-id="<%= nitResume[i].id %>">Unlike</button>
+            <% break; %>
+            <% }else if(j==user.likedResume.length-1){ %>
+                <button onclick="actOnPost(event);" data-post-id="<%= nitResume[i].id %>">Like</button>
+                <% } %>
+                <% } %>
+            <span id="likes-count-<%= nitResume[i].id %>"><%= nitResume[i].likeCount %> </span>
+          </td>
+        </tr>
+     <% } %>
+     <h1>Other Resume List</h1>
+      <% for(var i=0; i <  otherResume.length ; i++) {%>
+        <tr>
+          <td>
+            <a href="<%= otherResume[i].resume %>" target="_blank">Resume <%= i+1 %></a>
+            <% if(user.likedResume.length ==0 ) {%>
+                <button onclick="actOnPost(event);" data-post-id="<%= otherResume[i].id %>">Like</button>
+                <% } %>
+            <% for(var j=0; j <  user.likedResume.length ; j++) {%>
+                <% if(user.likedResume[j]==otherResume[i].resume) {%>
+            <button onclick="actOnPost(event);" data-post-id="<%= otherResume[i].id %>">Unlike</button>
+            <% break; %>
+            <% }else if(j==user.likedResume.length-1){ %>
+                <button onclick="actOnPost(event);" data-post-id="<%= otherResume[i].id %>">Like</button>
+                <% } %>
+                <% } %>
+            <span id="likes-count-<%= otherResume[i].id %>"><%= otherResume[i].likeCount %> </span>
+          </td>
+        </tr>
+     <% } %>
+      <h1>List of Resume Uploaded By You</h1>
+      <% for(var i=0; i <  resumeList.length ; i++) {%>
+        <tr>
+          <td>
+            <a href="<%= resumeList[i].resume %>" target="_blank">Resume <%= i+1 %></a>
+          </td>
+        </tr>
+     <% } %>
+     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        var updatePostStats = {
+            Like: function (postId) {
+                document.querySelector('#likes-count-' + postId).textContent++;
+            },
+            Unlike: function(postId) {
+                document.querySelector('#likes-count-' + postId).textContent--;
+            }
+        };
+    
+        var toggleButtonText = {
+            Like: function(button) {
+                button.textContent = "Unlike";
+            },
+            Unlike: function(button) {
+                button.textContent = "Like";
+            }
+        };
+    
+        var actOnPost = function (event) {
+            var postId = event.target.dataset.postId;
+            var action = event.target.innerText.trim();
+            toggleButtonText[action](event.target);
+            updatePostStats[action](postId);
+            axios.post('/posts/' + postId + '/act', { action: action });
+        };
+    </script>
+</body>
+</html>
