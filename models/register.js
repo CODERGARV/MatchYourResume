@@ -18,8 +18,7 @@ const userSchema=new mongoose.Schema({
         required:true
     },
     likedResume:{
-        type: [String],
-        unique:true
+        type: [String]
     }
 })
 const register=new mongoose.model("Register",userSchema);
