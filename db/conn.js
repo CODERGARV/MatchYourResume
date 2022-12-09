@@ -1,6 +1,6 @@
 const  mongoose=require("mongoose");
-
-mongoose.connect(process.env.db, {
+const db = 'mongodb+srv://codergarv:byDThQBPklGPucwL@cluster0.vfre3ai.mongodb.net/?retryWrites=true&w=majority';
+mongoose.connect(db, {
     useNewUrlParser:true,
     useUnifiedTopology:true
 }).then(()=>{
